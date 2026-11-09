@@ -102,6 +102,11 @@ else {
     ease: "power3.out",
     scrollTrigger: { trigger: ".service-grid", start: "top 80%" },
   });
+  gsap.from('.sell-intro > *', { y: 50, opacity: 0, stagger: .1, duration: .9, ease: 'power3.out', scrollTrigger: { trigger: '.product-sell', start: 'top 72%' } });
+  gsap.from('.sell-tile', { y: 65, opacity: 0, stagger: .13, duration: .8, ease: 'power3.out', scrollTrigger: { trigger: '.sell-grid', start: 'top 82%' } });
+  gsap.from('.faq-title, .faq details', { y: 38, opacity: 0, stagger: .08, duration: .7, ease: 'power2.out', scrollTrigger: { trigger: '.faq', start: 'top 75%' } });
+  gsap.from('.early-access .access-copy > *, .early-access .access-form', { y: 45, opacity: 0, stagger: .12, duration: .85, ease: 'power3.out', scrollTrigger: { trigger: '.early-access', start: 'top 72%' } });
+  gsap.from('.contact-link span, .contact-link b', { yPercent: 110, duration: 1, stagger: .1, ease: 'power3.out', scrollTrigger: { trigger: '.contact', start: 'top 65%' } });
   const steps = gsap.utils.toArray(".stage-step");
   if (window.matchMedia("(min-width: 851px)").matches) {
   const timeline = gsap.timeline({
