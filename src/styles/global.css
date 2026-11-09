@@ -13,7 +13,29 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis:not(.lenis-autoToggle).lenis-stopped {
+  overflow: clip;
+}
+.lenis [data-lenis-prevent],
+.lenis [data-lenis-prevent-wheel],
+.lenis [data-lenis-prevent-touch],
+.lenis [data-lenis-prevent-vertical],
+.lenis [data-lenis-prevent-horizontal] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+.lenis.lenis-autoToggle {
+  transition-behavior: allow-discrete;
+  transition-property: overflow;
+  transition-duration: 1ms;
 }
 body {
   margin: 0;
@@ -275,6 +297,12 @@ textarea {
   background: var(--orange);
   color: #fff;
   padding: 17px 0;
+  user-select: none;
+  cursor: grab;
+  touch-action: pan-y;
+}
+.marquee:active {
+  cursor: grabbing;
 }
 .marquee-track {
   display: flex;
@@ -282,6 +310,7 @@ textarea {
   align-items: center;
   gap: 33px;
   white-space: nowrap;
+  will-change: transform;
 }
 .marquee span {
   font-size: 13px;
