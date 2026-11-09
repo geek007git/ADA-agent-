@@ -184,6 +184,16 @@ if (reduceMotion) {
     });
   });
 
+  // One-by-One Concentration Focus on Agent Rows
+  document.querySelectorAll(".agent-row").forEach((row) => {
+    ScrollTrigger.create({
+      trigger: row,
+      start: "top 62%",
+      end: "bottom 38%",
+      toggleClass: "is-focused",
+    });
+  });
+
   gsap.from(".agent-row", {
     y: 45,
     opacity: 0,
@@ -223,6 +233,16 @@ if (reduceMotion) {
     },
   });
 
+  // One-by-One Focus on Manifesto Lines
+  document.querySelectorAll(".manifesto-line").forEach((line) => {
+    ScrollTrigger.create({
+      trigger: line,
+      start: "top 65%",
+      end: "bottom 35%",
+      toggleClass: "is-active",
+    });
+  });
+
   gsap.from(".manifesto-line", {
     y: 40,
     opacity: 0,
@@ -254,6 +274,34 @@ if (reduceMotion) {
     scrollTrigger: { trigger: ".sell-grid", start: "top 82%", once: true },
   });
 
+  // Progressive Micro-Animations on Sell Tiles
+  gsap.from(".tile-art-plan i", {
+    scaleY: 0,
+    transformOrigin: "bottom",
+    stagger: 0.15,
+    duration: 0.8,
+    ease: "power3.out",
+    scrollTrigger: { trigger: ".tile-art-plan", start: "top 85%", once: true },
+  });
+
+  gsap.from(".tile-art-flow i", {
+    scale: 0.4,
+    opacity: 0.2,
+    stagger: 0.12,
+    duration: 0.7,
+    ease: "back.out(1.8)",
+    scrollTrigger: { trigger: ".tile-art-flow", start: "top 85%", once: true },
+  });
+
+  gsap.from(".tile-art-proof i", {
+    scale: 0.2,
+    opacity: 0,
+    stagger: 0.18,
+    duration: 0.65,
+    ease: "back.out(2)",
+    scrollTrigger: { trigger: ".tile-art-proof", start: "top 85%", once: true },
+  });
+
   gsap.from(".faq-title > *, .faq details", {
     y: 30,
     opacity: 0,
@@ -281,57 +329,136 @@ if (reduceMotion) {
     scrollTrigger: { trigger: ".contact", start: "top 70%", once: true },
   });
 
-  // 7. Pinned Product Stage (Silky, Non-Jumping Crossfades)
+  // 7. Pinned Product Stage with Concentration Stops & Magnetic Hold
   const steps = gsap.utils.toArray(".stage-step");
+  const stageTabs = gsap.utils.toArray(".stage-tab");
+  const stagePillLabel = document.querySelector(".stage-pill-label");
+  const windowStatusText = document.querySelector(".window-status-text");
+  const promptCard = document.querySelector(".prompt-card");
+  const runStatusDesc = document.querySelector(".run-status-desc");
+  const runPct = document.querySelector(".run-pct");
+  const architectEvent = document.querySelector('[data-event="architect"]');
+  const frontendEvent = document.querySelector('[data-event="frontend"]');
+  const qaEvent = document.querySelector('[data-event="qa"]');
+  const stageReceipt = document.querySelector(".stage-receipt");
+
   if (window.matchMedia("(min-width: 851px)").matches && steps.length > 1) {
-    gsap.set(steps.slice(1), { autoAlpha: 0, y: 30 });
+    gsap.set(steps.slice(1), { autoAlpha: 0, y: 35 });
+    gsap.set(stageReceipt, { autoAlpha: 0, y: 16 });
+
+    // Initial State: Stage 1 (Brief active)
+    if (promptCard) promptCard.classList.add("highlight");
+    document.querySelectorAll(".prompt-tags span").forEach((s) => s.classList.add("is-active"));
+
+    const setStageUI = (index) => {
+      stageTabs.forEach((tab, i) => {
+        tab.classList.toggle("is-active", i === index);
+      });
+      if (stagePillLabel) {
+        stagePillLabel.textContent = `STAGE 0${index + 1}`;
+      }
+      if (windowStatusText) {
+        if (index === 0) windowStatusText.textContent = "RUNNING: 01 BRIEF ANALYSIS";
+        else if (index === 1) windowStatusText.textContent = "RUNNING: 02 AGENTS SPRINTING";
+        else windowStatusText.textContent = "VERIFIED: 03 AUDIT COMPLETE";
+      }
+    };
 
     const stageTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".product-stage",
         start: "top top",
-        end: "+=220%",
-        scrub: 1.1,
+        end: "+=380%",
+        scrub: 1.2,
         pin: true,
         anticipatePin: 1,
+        snap: {
+          snapTo: [0, 0.5, 1], // Magnetic Concentration Stops on Stage 1, Stage 2, Stage 3
+          duration: { min: 0.35, max: 0.7 },
+          delay: 0.1,
+          ease: "power2.inOut",
+        },
+        onUpdate: (self) => {
+          if (self.progress < 0.28) {
+            setStageUI(0);
+          } else if (self.progress >= 0.28 && self.progress < 0.72) {
+            setStageUI(1);
+          } else {
+            setStageUI(2);
+          }
+        },
       },
     });
 
-    // Step 1 to Step 2
-    stageTl
-      .to(steps[0], { autoAlpha: 0, y: -30, duration: 0.8, ease: "power2.inOut" })
-      .to(steps[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.inOut" }, "<+=0.2")
-      .to(".scanline", { top: "52%", duration: 0.8, ease: "power2.inOut" }, "<")
-      .to(".run-line strong", { textContent: "Validating frontend & backend", duration: 0.3 }, "<")
-      .to(".run-line b", { textContent: "84%", duration: 0.5 }, "<");
+    // TIMELINE PHASES WITH HOLD / DWELL PERIODS
+    // Phase 1 (0 -> 1.0): Stage 1 Brief Hold
+    stageTl.addLabel("stage1", 0);
 
-    // Step 2 to Step 3
+    // Transition 1 -> 2 (1.0 -> 2.2)
     stageTl
-      .to(steps[1], { autoAlpha: 0, y: -30, duration: 0.8, ease: "power2.inOut" })
-      .to(steps[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.inOut" }, "<+=0.2")
-      .to(".scanline", { top: "82%", duration: 0.8, ease: "power2.inOut" }, "<")
-      .to(".run-line strong", { textContent: "All review gates passed", duration: 0.3 }, "<")
-      .to(".run-line b", { textContent: "100%", duration: 0.5 }, "<")
+      .to(steps[0], { autoAlpha: 0, y: -30, duration: 0.8, ease: "power2.inOut" }, 1.0)
+      .to(steps[1], { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.inOut" }, 1.3)
+      .to(".scanline", { top: "54%", duration: 1.0, ease: "power2.inOut" }, 1.1)
+      .to(promptCard, { backgroundColor: "#0b1e28", borderColor: "#3b4c54", boxShadow: "none", duration: 0.5 }, 1.1)
+      .to(runStatusDesc, { textContent: "Architect & Frontend executing repository sprint", duration: 0.4 }, 1.2)
+      .to(runPct, { textContent: "72%", duration: 0.8 }, 1.2)
       .to(
-        ".agent-stream .agent-event:nth-child(3) i",
-        {
-          backgroundColor: "#173f42",
-          borderColor: "#2b736d",
-          color: "#75c7ac",
-          innerHTML: "✓",
-          duration: 0.4,
-        },
-        "<"
+        architectEvent?.querySelector("i"),
+        { backgroundColor: "#173f42", borderColor: "#2b736d", color: "#75c7ac", duration: 0.35 },
+        1.4
       )
       .to(
-        ".agent-stream .agent-event:nth-child(3) small",
-        {
-          textContent: "05:02",
-          color: "#738991",
-          duration: 0.4,
-        },
-        "<"
+        frontendEvent?.querySelector("i"),
+        { backgroundColor: "#173f42", borderColor: "#2b736d", color: "#75c7ac", duration: 0.35 },
+        1.6
+      )
+      .to(
+        qaEvent?.querySelector("i"),
+        { backgroundColor: "var(--orange)", borderColor: "var(--orange)", color: "#fff", duration: 0.35 },
+        1.8
       );
+
+    // Phase 2 (2.2 -> 2.9): Stage 2 Build Hold
+    stageTl.addLabel("stage2", 2.2);
+
+    // Transition 2 -> 3 (2.9 -> 4.1)
+    stageTl
+      .to(steps[1], { autoAlpha: 0, y: -30, duration: 0.8, ease: "power2.inOut" }, 2.9)
+      .to(steps[2], { autoAlpha: 1, y: 0, duration: 0.8, ease: "power2.inOut" }, 3.2)
+      .to(".scanline", { top: "86%", duration: 1.0, ease: "power2.inOut" }, 3.0)
+      .to(runStatusDesc, { textContent: "All review gates passed — Founder sign-off ready", duration: 0.4 }, 3.1)
+      .to(runPct, { textContent: "100%", duration: 0.8 }, 3.1)
+      .to(
+        qaEvent?.querySelector("i"),
+        { backgroundColor: "#173f42", borderColor: "#2b736d", color: "#75c7ac", duration: 0.35 },
+        3.3
+      )
+      .to(
+        qaEvent?.querySelector("small"),
+        { textContent: "05:02", color: "#738991", duration: 0.35 },
+        3.3
+      )
+      .to(stageReceipt, { autoAlpha: 1, y: 0, duration: 0.65, ease: "back.out(1.5)" }, 3.4);
+
+    // Phase 3 (4.1 -> 4.8): Stage 3 Prove Hold
+    stageTl.addLabel("stage3", 4.1);
+
+    // Tab Clicks jump straight to the respective Concentration Stop
+    stageTabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        const progressValues = [0, 0.5, 1];
+        const scrollDist = stageTl.scrollTrigger.end - stageTl.scrollTrigger.start;
+        const targetScroll = stageTl.scrollTrigger.start + scrollDist * progressValues[i] + 2;
+        if (lenis) {
+          lenis.scrollTo(targetScroll, {
+            duration: 1.1,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        } else {
+          window.scrollTo({ top: targetScroll, behavior: "smooth" });
+        }
+      });
+    });
   }
 }
 

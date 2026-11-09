@@ -57,19 +57,105 @@ const services = [
         <aside class="section-index"><span>01</span><p>THE PRODUCT<br />ADA AGENT</p></aside>
         <div class="ada-copy reveal-copy"><p class="kicker"><i></i> MEET ADA AGENT</p><h2>Your idea called.<br /><em>It wants a team.</em></h2><p class="lead">Meet the AI product team we’re building for founders who are ready to move. Give ADA AGENT a brief; specialist agents plan, build, test, and review the work. You keep the final say, and the evidence.</p><a class="text-link magnetic" href="#early-access">GET IN EARLY <span>↗</span></a></div>
       </section>
-      <section class="product-stage" data-cursor="EXPLORE">
-        <div class="stage-copy">
-          <div class="stage-step active"><span>01 / BRIEF</span><h3>Start with<br />the spark.</h3><p>No 40-page spec required. Tell ADA what you want to make, in words you’d use with a teammate.</p></div>
-          <div class="stage-step"><span>02 / BUILD</span><h3>Give the idea<br />some company.</h3><p>Product, design, and engineering specialists follow one plan and work in one repository.</p></div>
-          <div class="stage-step"><span>03 / PROVE</span><h3>Good work<br />has receipts.</h3><p>Builds, tests, review notes, and Git history make the progress visible. Your approval still matters.</p></div>
+      <section class="product-stage" data-cursor="EXPLORE" id="stage">
+        <div class="stage-sidebar">
+          <div class="stage-nav-pill">
+            <span class="stage-pill-dot"></span>
+            <span class="stage-pill-text">WORKFLOW TIMELINE • <b class="stage-pill-label">STAGE 01</b></span>
+          </div>
+          <div class="stage-stepper" role="tablist" aria-label="Stages of execution">
+            <button type="button" class="stage-tab is-active" data-stage="0">
+              <span class="tab-index">01</span>
+              <span class="tab-info"><b>BRIEF</b><small>Idea shape</small></span>
+              <i class="tab-indicator"></i>
+            </button>
+            <button type="button" class="stage-tab" data-stage="1">
+              <span class="tab-index">02</span>
+              <span class="tab-info"><b>BUILD</b><small>Agents deploy</small></span>
+              <i class="tab-indicator"></i>
+            </button>
+            <button type="button" class="stage-tab" data-stage="2">
+              <span class="tab-index">03</span>
+              <span class="tab-info"><b>PROVE</b><small>Audit & receipts</small></span>
+              <i class="tab-indicator"></i>
+            </button>
+          </div>
+          <div class="stage-copy">
+            <div class="stage-step active" data-step="0">
+              <div class="step-tag"><span>STAGE 01</span> • <b>THE STARTING SPARK</b></div>
+              <h3>Start with<br />the spark.</h3>
+              <p>No 40-page spec required. Tell ADA what you want to make, in words you’d use with a teammate.</p>
+            </div>
+            <div class="stage-step" data-step="1">
+              <div class="step-tag"><span>STAGE 02</span> • <b>AUTONOMOUS SPRINT</b></div>
+              <h3>Give the idea<br />some company.</h3>
+              <p>Product, design, and engineering specialists follow one plan and work in one repository.</p>
+            </div>
+            <div class="stage-step" data-step="2">
+              <div class="step-tag"><span>STAGE 03</span> • <b>VERIFIED EVIDENCE</b></div>
+              <h3>Good work<br />has receipts.</h3>
+              <p>Builds, tests, review notes, and Git history make the progress visible. Your approval still matters.</p>
+            </div>
+          </div>
+          <div class="stage-scroll-tip">
+            <span class="tip-mouse"><i></i></span>
+            <span>HOLDING POINT • SCROLL OR CLICK TO PROCEED</span>
+          </div>
         </div>
         <div class="product-window">
-          <div class="window-bar"><span>ADA / PROJECT 001</span><span class="window-live"><i></i> RUNNING</span><span>•••</span></div>
-          <div class="window-body"><div class="window-nav"><b>A</b><i></i><i></i><i></i><i></i><span>?</span></div><div class="window-main">
-            <div class="prompt-card"><small>YOUR REQUIREMENT</small><p>Build a focused project platform for small creative teams. Make it fast, calm, and easy to trust.</p><div><span>REACT</span><span>FASTAPI</span><span>POSTGRES</span></div></div>
-            <div class="run-line"><span>PROJECT RUN</span><strong>Building your product</strong><b>68%</b></div>
-            <div class="agent-stream"><div class="agent-event done"><i>✓</i><p><strong>Architect</strong><span>Published system design and API contract</span></p><small>00:42</small></div><div class="agent-event done"><i>✓</i><p><strong>Frontend</strong><span>Completed responsive workspace interface</span></p><small>04:18</small></div><div class="agent-event active"><i></i><p><strong>QA</strong><span>Running integration and acceptance tests</span></p><small>LIVE</small></div></div>
-          </div></div><div class="scanline"></div>
+          <div class="window-bar">
+            <span>ADA / PROJECT 001</span>
+            <span class="window-live"><i></i> <b class="window-status-text">RUNNING: 01 BRIEF ANALYSIS</b></span>
+            <span>•••</span>
+          </div>
+          <div class="window-body">
+            <div class="window-nav">
+              <b>A</b><i></i><i></i><i></i><i></i><span>?</span>
+            </div>
+            <div class="window-main">
+              <div class="prompt-card">
+                <div class="prompt-header">
+                  <small>YOUR REQUIREMENT</small>
+                  <span class="prompt-badge">ACTIVE BRIEF</span>
+                </div>
+                <p>Build a focused project platform for small creative teams. Make it fast, calm, and easy to trust.</p>
+                <div class="prompt-tags">
+                  <span>REACT</span><span>FASTAPI</span><span>POSTGRES</span>
+                </div>
+              </div>
+              <div class="run-line">
+                <span>PROJECT RUN</span>
+                <strong class="run-status-desc">Analyzing requirement & generating system plan</strong>
+                <b class="run-pct">25%</b>
+              </div>
+              <div class="agent-stream">
+                <div class="agent-event" data-event="architect">
+                  <i>✓</i>
+                  <p><strong>Architect</strong><span>Published system design and API contract</span></p>
+                  <small>00:42</small>
+                </div>
+                <div class="agent-event" data-event="frontend">
+                  <i>✓</i>
+                  <p><strong>Frontend</strong><span>Completed responsive workspace interface</span></p>
+                  <small>04:18</small>
+                </div>
+                <div class="agent-event" data-event="qa">
+                  <i>✓</i>
+                  <p><strong>QA</strong><span>Running integration and acceptance tests</span></p>
+                  <small>LIVE</small>
+                </div>
+              </div>
+              <div class="stage-receipt">
+                <div class="receipt-icon">✓</div>
+                <div class="receipt-text">
+                  <strong>PROVEN EVIDENCE PACK READY</strong>
+                  <span>14/14 Tests Passing • Clean Git Branch • Ready for Founder Approval</span>
+                </div>
+                <span class="receipt-badge">PROVED ↗</span>
+              </div>
+            </div>
+          </div>
+          <div class="scanline"></div>
         </div>
       </section>
       <section class="brief-lab" id="brief-lab" aria-labelledby="brief-lab-title">
