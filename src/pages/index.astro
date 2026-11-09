@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+const agents = [
+  ['01', 'CTO', 'The big picture, minus the hand waving.'],
+  ['02', 'PRODUCT', 'Turns “wouldn’t it be great if” into a real brief.'],
+  ['03', 'ARCHITECT', 'Makes the blueprint before anyone reaches for a hammer.'],
+  ['04', 'ENGINEERING', 'Builds the product, from pixels to Postgres.'],
+  ['05', 'QA + REVIEW', 'Asks the awkward questions before your users do.'],
+];
+const services = [
+  ['Brand systems', 'A point of view people can spot from across the internet.'],
+  ['Web & interactive', 'Digital experiences that make “just one more scroll” inevitable.'],
+  ['Product UI', 'Interfaces so clear the instructions can take the day off.'],
+  ['Search visibility', 'A sound technical foundation so the right people can find you.'],
+];
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#002642" />
+    <meta name="description" content="ARVIS builds brands and digital experiences with a point of view. Meet ADA AGENT, the AI product team being built to turn ideas into tested software." />
+    <meta property="og:title" content="ARVIS — Make the thing they can't ignore" />
+    <meta property="og:description" content="Big ideas are impatient. ARVIS builds brands, digital experiences, and ADA AGENT to help them move." />
+    <title>ARVIS — Make the thing they can't ignore</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="loader" aria-hidden="true"><div class="loader-mark">ARVIS<span>®</span></div><div class="loader-line"><i></i></div><span class="loader-count">00</span></div>
+    <div class="cursor" aria-hidden="true"><span>VIEW</span></div><div class="noise" aria-hidden="true"></div>
+    <header class="topbar">
+      <a class="wordmark" href="#home" aria-label="ARVIS home">ARVIS<span>®</span></a>
+      <p class="top-note">Creative technology company<br />Good ideas have terrible patience.</p>
+      <nav aria-label="Main navigation"><a href="#ada">ADA AGENT</a><a href="#services">Services</a><a href="#contact">Start something <b>↗</b></a></nav>
+      <button class="menu" type="button" aria-label="Open navigation" aria-expanded="false"><i></i><i></i></button>
+    </header>
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-orbit orbit-a"></div><div class="hero-orbit orbit-b"></div><div class="hero-orbit orbit-c"></div>
+        <div class="hero-status"><span><i></i> ARVIS / 2026</span><span>SCROLL TO BEGIN ↓</span></div>
+        <div class="hero-title" aria-label="Make the thing they can't ignore">
+          <div class="title-line"><span>MAKE THE THING</span></div><div class="title-line title-offset"><span>THEY CAN'T</span></div><div class="title-line"><span>IGNORE<em>.</em></span></div>
+        </div>
+        <div class="hero-foot"><p>For ideas too good to stay in a notes app. We build brands, digital experiences, and the next way to make software.</p><a class="round-link magnetic" href="#ada" aria-label="Meet ADA Agent"><span>MEET<br />ADA ↘</span></a><p class="hero-tag">STRATEGY × DESIGN × TECHNOLOGY<br />BUILT IN INDIA / WORKING EVERYWHERE</p></div>
+      </section>
+      <div class="marquee" aria-hidden="true"><div class="marquee-track"><span>ONE BRIEF</span><i>✳</i><span>A FULL PRODUCT TEAM</span><i>✳</i><span>REAL PROOF</span><i>✳</i><span>YOU STAY IN CONTROL</span><i>✳</i><span>ONE BRIEF</span><i>✳</i><span>A FULL PRODUCT TEAM</span><i>✳</i></div></div>
+      <section class="ada-intro" id="ada">
+        <aside class="section-index"><span>01</span><p>THE PRODUCT<br />ADA AGENT</p></aside>
+        <div class="ada-copy reveal-copy"><p class="kicker"><i></i> MEET ADA AGENT</p><h2>Your idea called.<br /><em>It wants a team.</em></h2><p class="lead">Meet the AI product team we’re building for founders who are ready to move. Give ADA AGENT a brief; specialist agents plan, build, test, and review the work. You keep the final say, and the evidence.</p><a class="text-link magnetic" href="#early-access">GET IN EARLY <span>↗</span></a></div>
+      </section>
+      <section class="product-stage" data-cursor="EXPLORE">
+        <div class="stage-copy">
+          <div class="stage-step active"><span>01 / BRIEF</span><h3>Start with<br />the spark.</h3><p>No 40-page spec required. Tell ADA what you want to make, in words you’d use with a teammate.</p></div>
+          <div class="stage-step"><span>02 / BUILD</span><h3>Give the idea<br />some company.</h3><p>Product, design, and engineering specialists follow one plan and work in one repository.</p></div>
+          <div class="stage-step"><span>03 / PROVE</span><h3>Good work<br />has receipts.</h3><p>Builds, tests, review notes, and Git history make the progress visible. Your approval still matters.</p></div>
+        </div>
+        <div class="product-window">
+          <div class="window-bar"><span>ADA / PROJECT 001</span><span class="window-live"><i></i> RUNNING</span><span>•••</span></div>
+          <div class="window-body"><div class="window-nav"><b>A</b><i></i><i></i><i></i><i></i><span>?</span></div><div class="window-main">
+            <div class="prompt-card"><small>YOUR REQUIREMENT</small><p>Build a focused project platform for small creative teams. Make it fast, calm, and easy to trust.</p><div><span>REACT</span><span>FASTAPI</span><span>POSTGRES</span></div></div>
+            <div class="run-line"><span>PROJECT RUN</span><strong>Building your product</strong><b>68%</b></div>
+            <div class="agent-stream"><div class="agent-event done"><i>✓</i><p><strong>Architect</strong><span>Published system design and API contract</span></p><small>00:42</small></div><div class="agent-event done"><i>✓</i><p><strong>Frontend</strong><span>Completed responsive workspace interface</span></p><small>04:18</small></div><div class="agent-event active"><i></i><p><strong>QA</strong><span>Running integration and acceptance tests</span></p><small>LIVE</small></div></div>
+          </div></div><div class="scanline"></div>
+        </div>
+      </section>
+      <section class="brief-lab" id="brief-lab" aria-labelledby="brief-lab-title">
+        <div class="brief-lab-heading"><p class="kicker"><i></i> IDEAS LOVE A STARTING LINE</p><h2 id="brief-lab-title">What if we built…</h2><p>That’s enough to begin. Pick an example and see how ADA would turn a first thought into a plan.</p></div>
+        <div class="brief-lab-panel">
+          <div class="brief-options" role="group" aria-label="Example project briefs">
+            <button type="button" class="brief-option is-selected" data-brief="platform" aria-pressed="true"><span>01</span> Team workspace <b>↗</b></button>
+            <button type="button" class="brief-option" data-brief="marketplace" aria-pressed="false"><span>02</span> Local marketplace <b>↗</b></button>
+            <button type="button" class="brief-option" data-brief="dashboard" aria-pressed="false"><span>03</span> Data dashboard <b>↗</b></button>
+          </div>
+          <div class="brief-output" aria-live="polite"><div class="brief-output-top"><span>ADA / PLANNING PREVIEW</span><span class="output-status"><i></i> READY</span></div><p class="brief-prompt">“Build a calm workspace where small teams can track projects, files, and decisions.”</p><div class="brief-result"><span>ADA WOULD START WITH</span><ul><li>Project scope and user stories</li><li>Workspace roles and access rules</li><li>API and data model</li></ul></div><div class="brief-output-bottom"><span>EXAMPLE CONCEPT / NOT A LIVE RUN</span><a href="#early-access">BRING YOUR IDEA ↗</a></div></div>
+        </div>
+      </section>
+      <section class="agents-section">
+        <aside class="section-index"><span>02</span><p>HOW IT WORKS<br />SPECIALISTS, ORCHESTRATED</p></aside>
+        <div class="agents-content"><div class="agents-heading reveal-copy"><p class="kicker"><i></i> A TEAM WITH A PLAN</p><h2>Many minds.<br />One mission.</h2><p class="lead">Each specialist has a job. The workflow keeps them in step. You get to see what happened, what passed, and what needs your call.</p></div><div class="agent-list">{agents.map(([number, name, description]) => <article class="agent-row"><span>{number}</span><h3>{name}</h3><p>{description}</p><b>↗</b></article>)}</div></div>
+      </section>
+      <section class="proof-banner"><p>THE NORTH STAR</p><h2>Less “trust me.”<br /><span>More “see for yourself.”</span></h2><div class="proof-pills"><span>PASSING BUILD</span><span>TEST EVIDENCE</span><span>INDEPENDENT REVIEW</span><span>HUMAN APPROVAL</span></div></section>
+      <section class="services" id="services">
+        <aside class="section-index"><span>03</span><p>THE STUDIO<br />ARVIS SERVICES</p></aside>
+        <div class="services-content"><div class="services-heading reveal-copy"><p class="kicker"><i></i> THE HUMAN SIDE OF THE FUTURE</p><h2>Great ideas need<br /><em>great taste.</em></h2></div><div class="service-grid">{services.map(([name, description], i) => <article class="service-card" data-cursor="OPEN"><span>0{i + 1}</span><div><h3>{name}</h3><p>{description}</p></div><b>↗</b></article>)}</div></div>
+      </section>
+      <section class="manifesto"><p class="kicker"><i></i> THE ARVIS POINT OF VIEW</p><div class="manifesto-line"><span>LESS DECK.</span><span>MORE DOING.</span></div><div class="manifesto-line"><span>LESS GUESSING.</span><span>MORE PROOF.</span></div><div class="manifesto-line"><span>LESS “ONE DAY.”</span><span>MORE DAY ONE.</span></div></section>
+      <section class="early-access" id="early-access">
+        <div class="access-copy"><p class="kicker"><i></i> ADA AGENT / FOUNDING ACCESS</p><h2>That idea of yours?<br />Let’s give it legs.</h2><p>Tell us what’s been living in your head, notebook, or 47 open tabs. Join the early list and help shape ADA AGENT.</p></div>
+        <form class="access-form" id="waitlist-form"><label><span>01 / YOUR EMAIL</span><input type="email" name="email" placeholder="you@company.com" autocomplete="email" required /></label><label><span>02 / THE IDEA</span><textarea name="brief" rows="3" placeholder="Start with: What if we built..." required></textarea></label><button class="submit-button magnetic" type="submit" disabled><span>EARLY ACCESS OPENS SOON</span><b>↗</b></button><p class="form-note" aria-live="polite">Private preview. Signups will open when the form is connected.</p></form>
+      </section>
+      <section class="contact" id="contact"><p>THE NEXT GREAT THING STARTS WITH A HELLO.</p><a class="contact-link" href="#early-access"><span>LET’S MAKE IT</span><b>↗</b></a></section>
+    </main>
+    <footer><a class="wordmark" href="#home">ARVIS<span>®</span></a><p>CREATIVE TECHNOLOGY COMPANY<br />BUILT FOR FORWARD MOTION.</p><div><a href="#ada">ADA AGENT</a><a href="#services">SERVICES</a><a href="#early-access">EARLY ACCESS ↗</a></div><small>© 2026 ARVIS. ALL IDEAS IN MOTION.</small></footer>
+    <script src="../scripts/site.js"></script>
+  </body>
+</html>
