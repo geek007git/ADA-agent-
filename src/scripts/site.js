@@ -152,19 +152,57 @@ else {
   const packDogs = gsap.utils.toArray('.pack-dog');
   const packWhole = document.querySelector('.pack-whole');
   if (packStage && packDogs.length && packWhole) {
-    const packTimeline = gsap.timeline({ paused: true })
-      .fromTo(packDogs,
-        { y: 70, opacity: 0, scale: .55, rotation: (index) => index % 2 ? 7 : -7 },
-        { y: 0, opacity: 1, scale: 1, rotation: 0, duration: .38, stagger: .11, ease: 'back.out(1.8)' },
-      )
-      .to(packDogs, {
-        left: '50%', right: 'auto', top: '52%', xPercent: -50, yPercent: -50,
-        scale: .42, opacity: 0, duration: .55, stagger: .055, ease: 'power3.inOut',
-      }, '+=.12')
-      .fromTo(packWhole, { opacity: 0, scale: .55, rotation: -5 }, { opacity: 1, scale: 1, rotation: 0, duration: .55, ease: 'back.out(1.7)' }, '-=.25');
+    const packCursor = packStage.querySelector('.pack-cursor');
+    const packCount = packStage.querySelector('.pack-count b');
+    const pointer = { x: packStage.clientWidth / 2, y: packStage.clientHeight * .52 };
+    let packTimeline;
 
-    const assemblePack = () => packTimeline.play();
-    const scatterPack = () => packTimeline.reverse();
+    const updatePointer = (event) => {
+      if (packStage.classList.contains('is-complete')) return;
+      const bounds = packStage.getBoundingClientRect();
+      pointer.x = Math.max(70, Math.min(bounds.width - 70, event.clientX - bounds.left));
+      pointer.y = Math.max(70, Math.min(bounds.height - 65, event.clientY - bounds.top));
+      gsap.to(packCursor, { left: pointer.x, top: pointer.y, duration: .18, ease: 'power2.out', overwrite: true });
+    };
+
+    const assemblePack = () => {
+      packTimeline?.kill();
+      packStage.classList.remove('is-complete');
+      packStage.classList.add('is-tracking');
+      if (packCount) packCount.textContent = '00 / 05';
+      gsap.set(packWhole, { opacity: 0, left: '50%', top: '52%', xPercent: -50, yPercent: -50, scale: .55, rotation: -5 });
+      packTimeline = gsap.timeline({
+        onComplete: () => {
+          packStage.classList.remove('is-tracking');
+          packStage.classList.add('is-complete');
+        },
+      });
+      packDogs.forEach((dog, index) => {
+        packTimeline.fromTo(dog,
+          { y: 64, opacity: 0, scale: .5, rotation: index % 2 ? 8 : -8 },
+          {
+            left: () => pointer.x, top: () => pointer.y, xPercent: -50, yPercent: -50,
+            y: 0, opacity: 1, scale: .38, rotation: 0, duration: .72, ease: 'power3.inOut',
+            onStart: () => { if (packCount) packCount.textContent = `0${index + 1} / 05`; },
+          }, index * .13,
+        );
+      });
+      packTimeline
+        .to(packDogs, { opacity: 0, scale: .08, duration: .22, stagger: .035, ease: 'power2.in' }, '>-0.08')
+        .set(packWhole, { left: () => pointer.x, top: () => pointer.y })
+        .to(packWhole, { opacity: 1, scale: .72, rotation: 0, duration: .3, ease: 'back.out(2)' })
+        .to(packWhole, { left: '50%', top: '52%', scale: 1, duration: .65, ease: 'expo.inOut' }, '+=.08');
+    };
+
+    const scatterPack = () => {
+      packTimeline?.kill();
+      packStage.classList.remove('is-tracking', 'is-complete');
+      if (packCount) packCount.textContent = '00 / 05';
+      gsap.to(packWhole, { opacity: 0, scale: .45, duration: .25, overwrite: true });
+      gsap.to(packDogs, { opacity: 0, y: 70, duration: .3, stagger: .035, overwrite: true });
+    };
+
+    packStage.addEventListener('pointermove', updatePointer);
     packStage.addEventListener('pointerenter', assemblePack);
     packStage.addEventListener('pointerleave', scatterPack);
     packStage.addEventListener('focusin', assemblePack);
