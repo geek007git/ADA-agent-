@@ -55,6 +55,29 @@ const agents = [
         <p class="statement-copy">ARVIS works where identity, interface, and engineering meet. No relay race between departments. The people shaping the idea stay close to the people making it real.</p>
         <div class="discipline-list">{disciplines.map(([number, title, copy]) => <article><span>{number}</span><h3>{title}</h3><p>{copy}</p><b>↗</b></article>)}</div>
       </section>
+      <section class="process-reel" aria-label="ARVIS working process">
+        <div class="process-sticky">
+          <div class="process-counter"><span>PROCESS FILMS</span><b>01 / 03</b></div>
+          <div class="process-track">
+            <article class="process-panel process-panel--intro">
+              <span>THE WORK / IN MOTION</span>
+              <h2>Think.<br />Make.<br /><em>Prove.</em></h2>
+              <p>Three movements. One continuous line from first question to tested product.</p>
+            </article>
+            <article class="process-panel process-panel--film">
+              <video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/8004278/pexels-photo-8004278.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/8004278/8004278-uhd_3840_2160_25fps.mp4" type="video/mp4" /></video>
+              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>01 / THINK TOGETHER</span><h3>The right question<br />before the first line.</h3><small>4K / PAVEL DANILYUK VIA PEXELS</small></div>
+            </article>
+            <article class="process-panel process-panel--film">
+              <video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/12557538/pexels-photo-12557538.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/12557538/12557538-uhd_3840_2160_30fps.mp4" type="video/mp4" /></video>
+              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>02 / MAKE WITH CARE</span><h3>Precision is a<br />human habit.</h3><small>4K / MATIAS LUGE VIA PEXELS</small></div>
+            </article>
+            <article class="process-panel process-panel--outro">
+              <span>03 / PROVE THE RESULT</span><h2>Evidence<br />ends the<br /><em>argument.</em></h2><a href="#ada">SEE THE SYSTEM ↓</a>
+            </article>
+          </div>
+        </div>
+      </section>
       <section class="ada" id="ada">
         <div class="ada-head"><span>PRODUCT / IN DEVELOPMENT</span><span>ADA AGENT / 2026</span></div>
         <div class="ada-title"><p>One brief.<br />A complete product team.</p><h2>ADA<br />AGENT<sup>01</sup></h2></div>
@@ -74,6 +97,7 @@ const agents = [
       <section class="proof"><p>THE STANDARD</p><h2>Less “trust me.”<br /><span>More evidence.</span></h2><div><span>WORKING BUILD</span><span>TEST RESULTS</span><span>REVIEW NOTES</span><span>YOUR APPROVAL</span></div></section>
       <section class="contact ruled" id="contact"><div class="section-tag">NEW BUSINESS / OPEN</div><p>Have an idea that<br />will not sit still?</p><a href="mailto:hello@arvis.studio"><span>LET’S MAKE IT</span><b>↗</b></a><div class="contact-foot"><span>HELLO@ARVIS.STUDIO</span><span>BUILT IN INDIA / WORKING EVERYWHERE</span></div></section>
     </main>
+    <div class="scroll-progress" aria-hidden="true"><i></i></div>
     <aside class="usage" aria-label="ADA preview usage"><span>USAGE</span><i><b></b></i><strong>18</strong><small>/100</small></aside>
     <footer><a href="#home">ARVIS<sup>®</sup></a><p>© 2026 / ALL IDEAS IN MOTION</p><a href="#home">TOP ↑</a></footer>
     <script src="../scripts/site.js"></script>
