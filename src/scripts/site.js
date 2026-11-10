@@ -47,13 +47,6 @@ else {
     scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true },
   });
 
-  gsap.fromTo('.film video', { scale: 1.16 }, {
-    scale: 1,
-    yPercent: 7,
-    ease: 'none',
-    scrollTrigger: { trigger: '.film', start: 'top bottom', end: 'bottom top', scrub: true },
-  });
-
   gsap.fromTo('.film-caption strong', { yPercent: 35 }, {
     yPercent: -20,
     ease: 'none',
@@ -81,30 +74,22 @@ else {
     });
 
     processPanels.filter((panel) => panel.classList.contains('process-panel--film')).forEach((panel) => {
-      const video = panel.querySelector('video');
       gsap.fromTo(panel, { clipPath: 'inset(7% 3%)' }, {
         clipPath: 'inset(0% 0%)',
         ease: 'none',
         scrollTrigger: { trigger: panel, containerAnimation: processTween, start: 'left 90%', end: 'center center', scrub: true },
-      });
-      gsap.fromTo(video, { scale: 1.18 }, {
-        scale: 1,
-        ease: 'none',
-        scrollTrigger: { trigger: panel, containerAnimation: processTween, start: 'left right', end: 'right left', scrub: true },
       });
     });
   }
 
   const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   const constrainedNetwork = connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || '');
-  const prefer4k = innerWidth >= 1200 && !constrainedNetwork;
   const filmObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
     const video = entry.target;
     if (entry.isIntersecting) {
       if (!video.dataset.loaded) {
         const hdSource = video.getAttribute('data-src-hd');
-        const fourKSource = video.getAttribute('data-src-4k');
-        const preferredSource = prefer4k ? fourKSource : hdSource;
+        const preferredSource = hdSource;
         const fallbackSource = hdSource;
         video.dataset.loaded = 'true';
         video.src = preferredSource || fallbackSource;
@@ -120,22 +105,15 @@ else {
     } else {
       video.pause();
     }
-  }), { rootMargin: '85% 25%', threshold: .01 });
+  }), { rootMargin: constrainedNetwork ? '10% 0%' : '30% 10%', threshold: .01 });
   document.querySelectorAll('.smart-video').forEach((video) => filmObserver.observe(video));
 
   document.querySelectorAll('.material-film').forEach((figure) => {
     const frame = figure.querySelector('div');
-    const video = figure.querySelector('video');
     gsap.fromTo(frame, { clipPath: 'inset(14% 0 0 0)' }, {
       clipPath: 'inset(0% 0 0 0)',
       ease: 'none',
       scrollTrigger: { trigger: figure, start: 'top 88%', end: 'top 38%', scrub: .7 },
-    });
-    gsap.fromTo(video, { scale: 1.15, yPercent: -4 }, {
-      scale: 1,
-      yPercent: 4,
-      ease: 'none',
-      scrollTrigger: { trigger: figure, start: 'top bottom', end: 'bottom top', scrub: true },
     });
   });
 
@@ -145,12 +123,6 @@ else {
     scrollTrigger: { trigger: '.ada', start: 'top bottom', end: 'center top', scrub: true },
   });
 
-  gsap.fromTo('.split-film video', { scale: 1.18, yPercent: -5 }, {
-    scale: 1,
-    yPercent: 5,
-    ease: 'none',
-    scrollTrigger: { trigger: '.split-film', start: 'top bottom', end: 'bottom top', scrub: true },
-  });
 }
 const menu = document.querySelector('.menu');
 menu?.addEventListener('click', () => {
