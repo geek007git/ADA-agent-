@@ -95,12 +95,33 @@ else {
     });
   }
 
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const constrainedNetwork = connection?.saveData || /(^|-)2g$/.test(connection?.effectiveType || '');
+  const prefer4k = innerWidth >= 1200 && !constrainedNetwork;
   const filmObserver = new IntersectionObserver((entries) => entries.forEach((entry) => {
     const video = entry.target;
-    if (entry.isIntersecting) video.play().catch(() => {});
-    else video.pause();
-  }), { rootMargin: '35% 35%', threshold: .05 });
-  document.querySelectorAll('.process-panel video, .material-film video').forEach((video) => filmObserver.observe(video));
+    if (entry.isIntersecting) {
+      if (!video.dataset.loaded) {
+        const hdSource = video.getAttribute('data-src-hd');
+        const fourKSource = video.getAttribute('data-src-4k');
+        const preferredSource = prefer4k ? fourKSource : hdSource;
+        const fallbackSource = hdSource;
+        video.dataset.loaded = 'true';
+        video.src = preferredSource || fallbackSource;
+        video.addEventListener('error', () => {
+          if (fallbackSource && video.currentSrc !== fallbackSource) {
+            video.src = fallbackSource;
+            video.load();
+          }
+        }, { once: true });
+        video.load();
+      }
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }), { rootMargin: '85% 25%', threshold: .01 });
+  document.querySelectorAll('.smart-video').forEach((video) => filmObserver.observe(video));
 
   document.querySelectorAll('.material-film').forEach((figure) => {
     const frame = figure.querySelector('div');
