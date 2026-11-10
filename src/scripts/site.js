@@ -148,15 +148,34 @@ else {
     }
   }
 
-  const footerMascot = document.querySelector('.footer-mascot img');
-  if (footerMascot) {
-    gsap.fromTo(footerMascot,
-      { yPercent: 48, scale: .78 },
-      { yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.site-footer', start: 'top bottom', end: 'bottom bottom', scrub: .9 } },
-    );
+  const packStage = document.querySelector('.pack-stage');
+  const packDogs = gsap.utils.toArray('.pack-dog');
+  const packWhole = document.querySelector('.pack-whole');
+  if (packStage && packDogs.length && packWhole) {
+    const packTimeline = gsap.timeline({ paused: true })
+      .fromTo(packDogs,
+        { y: 70, opacity: 0, scale: .55, rotation: (index) => index % 2 ? 7 : -7 },
+        { y: 0, opacity: 1, scale: 1, rotation: 0, duration: .38, stagger: .11, ease: 'back.out(1.8)' },
+      )
+      .to(packDogs, {
+        left: '50%', right: 'auto', top: '52%', xPercent: -50, yPercent: -50,
+        scale: .42, opacity: 0, duration: .55, stagger: .055, ease: 'power3.inOut',
+      }, '+=.12')
+      .fromTo(packWhole, { opacity: 0, scale: .55, rotation: -5 }, { opacity: 1, scale: 1, rotation: 0, duration: .55, ease: 'back.out(1.7)' }, '-=.25');
+
+    const assemblePack = () => packTimeline.play();
+    const scatterPack = () => packTimeline.reverse();
+    packStage.addEventListener('pointerenter', assemblePack);
+    packStage.addEventListener('pointerleave', scatterPack);
+    packStage.addEventListener('focusin', assemblePack);
+    packStage.addEventListener('focusout', scatterPack);
+    if (!matchMedia('(pointer:fine)').matches) {
+      ScrollTrigger.create({ trigger: packStage, start: 'top 80%', once: true, onEnter: assemblePack });
+    }
+
     gsap.fromTo('.site-footer__wordmark',
-      { letterSpacing: '-.13em', opacity: .2 },
-      { letterSpacing: '-.095em', opacity: 1, ease: 'none', scrollTrigger: { trigger: '.site-footer', start: 'top 75%', end: 'center center', scrub: .7 } },
+      { letterSpacing: '-.13em', opacity: .08 },
+      { letterSpacing: '-.095em', opacity: .2, ease: 'none', scrollTrigger: { trigger: '.site-footer', start: 'top 75%', end: 'center center', scrub: .7 } },
     );
   }
 
