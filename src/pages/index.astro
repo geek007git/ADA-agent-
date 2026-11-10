@@ -14,6 +14,29 @@ const agents = [
   ['ENGINEERING', 'Ships the working product'],
   ['QA + REVIEW', 'Tries to break it before users do'],
 ];
+const canonicalUrl = Astro.site?.href;
+const socialImage = canonicalUrl ? new URL(adaMark.src, canonicalUrl).toString() : undefined;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': canonicalUrl ? `${canonicalUrl}#organization` : '#organization',
+      name: 'ARVIS',
+      email: 'hello@arvis.studio',
+      description: 'An independent creative technology studio connecting product strategy, interface design, software engineering, and review.',
+      ...(canonicalUrl ? { url: canonicalUrl, logo: socialImage } : {}),
+    },
+    ...(canonicalUrl ? [{
+      '@type': 'WebSite',
+      '@id': `${canonicalUrl}#website`,
+      url: canonicalUrl,
+      name: 'ARVIS',
+      publisher: { '@id': `${canonicalUrl}#organization` },
+      inLanguage: 'en',
+    }] : []),
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -21,16 +44,36 @@ const agents = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#e3e7eb" />
-    <meta name="description" content="ARVIS is a creative technology company building distinctive brands, digital products, and ADA AGENT." />
-    <meta property="og:title" content="ARVIS — Ideas into working systems" />
-    <meta property="og:description" content="Strategy, design, engineering, and proof in one visible process." />
-    <title>ARVIS — Ideas into working systems</title>
+    <meta name="color-scheme" content="light dark" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="author" content="ARVIS" />
+    <meta name="description" content="ARVIS is an independent creative technology studio building distinctive brands, digital products, and ADA Agent through strategy, design, engineering, and review." />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="ARVIS" />
+    <meta property="og:locale" content="en_IN" />
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:title" content="ARVIS — Creative Technology Studio & ADA Agent" />
+    <meta property="og:description" content="Strategy, identity, interface, engineering, and proof—built as one visible system." />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+    {socialImage && <meta property="og:image:alt" content="ADA African wild dog pixel mark by ARVIS" />}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="ARVIS — Creative Technology Studio & ADA Agent" />
+    <meta name="twitter:description" content="Strategy, identity, interface, engineering, and proof—built as one visible system." />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <title>ARVIS — Creative Technology Studio & ADA Agent</title>
     <link rel="icon" type="image/png" href={adaMark.src} />
+    <link rel="manifest" href="/site.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://videos.pexels.com" />
+    <link rel="preconnect" href="https://images.pexels.com" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)}></script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">SKIP TO CONTENT</a>
+    <noscript><style>.loader{display:none!important}.smart-video{display:none!important}</style></noscript>
     <div class="loader" aria-hidden="true"><span>ARVIS / LOADING</span><b>00</b></div>
     <header class="topbar">
       <a class="brand" href="#home" aria-label="ARVIS home">ARVIS<sup>®</sup></a>
@@ -38,7 +81,7 @@ const agents = [
       <nav aria-label="Main navigation"><a href="#ada">ADA AGENT</a><a href="#practice">PRACTICE</a><a class="nav-cta" href="#contact">START A PROJECT ↗</a></nav>
       <button class="menu" type="button" aria-label="Toggle navigation" aria-expanded="false">MENU</button>
     </header>
-    <main>
+    <main id="main-content">
       <section class="hero ruled" id="home">
         <div class="hero-meta meta-left">INDEPENDENT STUDIO<br />EST. 2026</div>
         <div class="hero-meta meta-mid">STRATEGY + DESIGN + ENGINEERING<br /><span>BUILT AS ONE SYSTEM</span></div>
@@ -142,7 +185,7 @@ const agents = [
       <div class="pack-stage" tabindex="0" role="group" aria-label="ADA wild dog pack assembling into one mark">
         <span class="pack-stage__prompt">BRING THE CURSOR / ASSEMBLE THE PACK</span>
         <i class="pack-cursor" aria-hidden="true"></i>
-        <div class="pack-count" aria-hidden="true"><span>PACK SIGNAL</span><b>00 / 05</b></div>
+        <div class="pack-count"><span>PACK SIGNAL</span><b aria-live="polite">00 / 05</b></div>
         <img class="pack-dog" src={adaMark.src} alt="" width="1263" height="1246" />
         <img class="pack-dog" src={adaMark.src} alt="" width="1263" height="1246" />
         <img class="pack-dog" src={adaMark.src} alt="" width="1263" height="1246" />

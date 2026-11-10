@@ -19,6 +19,21 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => link.addEventListene
   document.querySelector('.menu')?.setAttribute('aria-expanded', 'false');
   lenis ? lenis.scrollTo(target) : target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
 }));
+const primaryLinks = [...document.querySelectorAll('.topbar nav a[href^="#"]')];
+const navigationSections = primaryLinks
+  .map((link) => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+if (navigationSections.length) {
+  const navigationObserver = new IntersectionObserver((entries) => {
+    const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    primaryLinks.forEach((link) => {
+      if (link.getAttribute('href') === `#${visible.target.id}`) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-25% 0px -60%', threshold: [0, .1, .5] });
+  navigationSections.forEach((section) => navigationObserver.observe(section));
+}
 const loader = document.querySelector('.loader');
 const loaderCount = loader?.querySelector('b');
 if (reduced) loader?.remove();
