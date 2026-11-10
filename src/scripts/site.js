@@ -131,3 +131,26 @@ menu?.addEventListener('click', () => {
   menu.textContent = open ? 'CLOSE' : 'MENU';
 });
 if (reduced) document.querySelectorAll('video').forEach((video) => video.pause());
+
+const companion = document.querySelector('.ada-companion');
+const companionTrigger = companion?.querySelector('.ada-companion__trigger');
+const companionPanel = companion?.querySelector('.ada-companion__panel');
+const companionClose = companion?.querySelector('.ada-companion__bar button');
+
+const setCompanion = (open) => {
+  if (!companion || !companionTrigger || !companionPanel) return;
+  companion.classList.toggle('is-open', open);
+  companionTrigger.setAttribute('aria-expanded', String(open));
+  companionPanel.setAttribute('aria-hidden', String(!open));
+  if (open) companionClose?.focus({ preventScroll: true });
+  else companionTrigger.focus({ preventScroll: true });
+};
+
+companionTrigger?.addEventListener('click', () => {
+  setCompanion(!companion?.classList.contains('is-open'));
+});
+companionClose?.addEventListener('click', () => setCompanion(false));
+companion?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => setCompanion(false)));
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && companion?.classList.contains('is-open')) setCompanion(false);
+});

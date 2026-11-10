@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import adaMascot from '../assets/ada-hyena-mascot-v2.png';
+import adaMark from '../assets/ada-hyena-mark.png';
 const disciplines = [
   ['01', 'Direction', 'Product strategy, positioning, and a plan with edges.'],
   ['02', 'Design', 'Identity and interfaces built as one coherent system.'],
@@ -103,6 +105,22 @@ const agents = [
       <section class="proof"><p>THE STANDARD / 01—04</p><h2>Less “trust me.”<br /><span>More evidence.</span></h2><div class="proof-line"><span>01 / WORKING BUILD</span><span>02 / TEST RESULTS</span><span>03 / REVIEW NOTES</span><span>04 / YOUR APPROVAL</span></div></section>
       <section class="contact ruled" id="contact"><div class="section-tag">NEW BUSINESS / OPEN</div><p>Have an idea that<br />will not sit still?</p><a href="mailto:hello@arvis.studio"><span>LET’S MAKE IT</span><b>↗</b></a><div class="contact-foot"><span>HELLO@ARVIS.STUDIO</span><span>BUILT IN INDIA / WORKING EVERYWHERE</span></div></section>
     </main>
+    <aside class="ada-companion" aria-label="Meet ADA">
+      <button class="ada-companion__trigger" type="button" aria-expanded="false" aria-controls="ada-companion-panel">
+        <img src={adaMark.src} alt="" width="72" height="72" />
+        <span>ADA</span><i aria-hidden="true"></i>
+      </button>
+      <section class="ada-companion__panel" id="ada-companion-panel" aria-hidden="true" aria-labelledby="ada-companion-title">
+        <div class="ada-companion__bar"><span>ADA / PRODUCT AGENT</span><button type="button" aria-label="Close ADA panel">CLOSE</button></div>
+        <div class="ada-companion__art"><img src={adaMascot.src} alt="ADA, the pixel hyena mascot" width="1536" height="1024" /></div>
+        <div class="ada-companion__copy">
+          <p>01 / MEET THE PACK</p>
+          <h2 id="ada-companion-title">Sharp instincts.<br />Working software.</h2>
+          <p>ADA brings product, design, engineering, and review into one visible run.</p>
+          <nav aria-label="ADA actions"><a href="#ada">EXPLORE ADA <span>↓</span></a><a href="#contact">START A PROJECT <span>↗</span></a></nav>
+        </div>
+      </section>
+    </aside>
     <div class="scroll-progress" aria-hidden="true"><i></i></div>
     <footer><a href="#home">ARVIS<sup>®</sup></a><p>© 2026 / ALL IDEAS IN MOTION</p><a href="#home">TOP ↑</a></footer>
     <script src="../scripts/site.js"></script>
