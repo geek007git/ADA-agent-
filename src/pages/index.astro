@@ -1,7 +1,6 @@
 ---
 import '../styles/global.css';
-import adaMascot from '../assets/ada-hyena-mascot-v2.png';
-import adaMark from '../assets/ada-hyena-mark.png';
+import adaMark from '../assets/ada-wild-dog-mark-concept.png';
 const disciplines = [
   ['01', 'Direction', 'Product strategy, positioning, and a plan with edges.'],
   ['02', 'Design', 'Identity and interfaces built as one coherent system.'],
@@ -26,7 +25,7 @@ const agents = [
     <meta property="og:title" content="ARVIS — Ideas into working systems" />
     <meta property="og:description" content="Strategy, design, engineering, and proof in one visible process." />
     <title>ARVIS — Ideas into working systems</title>
-    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%2317191a'/%3E%3Cpath d='M13 49 27 14h10l14 35H40l-2.8-8H26.4l-2.8 8Zm16-17h5.6L32 23.7Z' fill='%23ff5f14'/%3E%3C/svg%3E" />
+    <link rel="icon" type="image/png" href={adaMark.src} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -88,6 +87,22 @@ const agents = [
           <ol><li><span>01</span><strong>System plan published</strong><b>DONE</b></li><li><span>02</span><strong>Interface build complete</strong><b>DONE</b></li><li class="is-live"><span>03</span><strong>Acceptance tests running</strong><b>LIVE</b></li></ol>
         </div><div class="ada-copy"><p>ADA is the product team we are building for founders who need movement without losing control. Specialist agents plan, build, test, and review in one visible run.</p><a href="#contact">REQUEST EARLY ACCESS ↗</a></div></div>
       </section>
+      <section class="ada-identity" aria-label="ADA brand mascot">
+        <div class="ada-identity__sticky">
+          <div class="ada-identity__meta"><span>IDENTITY / 001</span><span>THE PACK INTELLIGENCE</span></div>
+          <div class="ada-identity__mark" data-ada-mark>
+            <span class="ada-identity__scan" aria-hidden="true"></span>
+            <img src={adaMark.src} alt="ADA African wild dog pixel mark" width="1263" height="1246" />
+          </div>
+          <div class="ada-identity__story">
+            <p>WHY THE WILD DOG</p>
+            <h2>Listen wide.<br />Move as one.</h2>
+            <div><span>01 / CONTEXT</span><p>Large ears. Nothing important gets lost between the brief and the build.</p></div>
+            <div><span>02 / COORDINATION</span><p>Distinct specialists work as one pack, without giving up their role.</p></div>
+            <div><span>03 / ENDURANCE</span><p>ADA stays with the problem from first decision to tested software.</p></div>
+          </div>
+        </div>
+      </section>
       <section class="agents ruled">
         <div class="section-tag">THE SYSTEM / SPECIALISTS</div><div class="agents-intro"><h2>Many minds.<br />One mission.</h2><p>Different responsibilities. Shared context. A single trail of decisions.</p></div>
         <div class="agent-index">{agents.map(([name, role], index) => <div><span>0{index + 1}</span><strong>{name}</strong><p>{role}</p></div>)}</div>
@@ -112,7 +127,7 @@ const agents = [
       </button>
       <section class="ada-companion__panel" id="ada-companion-panel" aria-hidden="true" aria-labelledby="ada-companion-title">
         <div class="ada-companion__bar"><span>ADA / PRODUCT AGENT</span><button type="button" aria-label="Close ADA panel">CLOSE</button></div>
-        <div class="ada-companion__art"><img src={adaMascot.src} alt="ADA, the pixel hyena mascot" width="1536" height="1024" /></div>
+        <div class="ada-companion__art"><img src={adaMark.src} alt="ADA, the African wild dog pixel mascot" width="1263" height="1246" /></div>
         <div class="ada-companion__copy">
           <p>01 / MEET THE PACK</p>
           <h2 id="ada-companion-title">Sharp instincts.<br />Working software.</h2>

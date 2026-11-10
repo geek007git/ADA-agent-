@@ -123,6 +123,31 @@ else {
     scrollTrigger: { trigger: '.ada', start: 'top bottom', end: 'center top', scrub: true },
   });
 
+  const identityMark = document.querySelector('[data-ada-mark]');
+  const identityImage = identityMark?.querySelector('img');
+  const identityScan = identityMark?.querySelector('.ada-identity__scan');
+  if (identityMark && identityImage) {
+    gsap.fromTo(identityImage,
+      { scale: .56, rotation: -7 },
+      { scale: 1.03, rotation: 3, ease: 'none', scrollTrigger: { trigger: '.ada-identity', start: 'top bottom', end: 'bottom bottom', scrub: 1 } },
+    );
+    gsap.fromTo(identityScan,
+      { y: -20 },
+      { y: () => identityMark.clientHeight + 20, ease: 'none', scrollTrigger: { trigger: '.ada-identity', start: 'top 70%', end: 'bottom 30%', scrub: .7, invalidateOnRefresh: true } },
+    );
+
+    if (matchMedia('(pointer:fine)').matches) {
+      const moveX = gsap.quickTo(identityImage, 'x', { duration: .45, ease: 'power3.out' });
+      const moveY = gsap.quickTo(identityImage, 'y', { duration: .45, ease: 'power3.out' });
+      identityMark.addEventListener('pointermove', (event) => {
+        const bounds = identityMark.getBoundingClientRect();
+        moveX(((event.clientX - bounds.left) / bounds.width - .5) * 22);
+        moveY(((event.clientY - bounds.top) / bounds.height - .5) * 22);
+      });
+      identityMark.addEventListener('pointerleave', () => { moveX(0); moveY(0); });
+    }
+  }
+
 }
 const menu = document.querySelector('.menu');
 menu?.addEventListener('click', () => {
