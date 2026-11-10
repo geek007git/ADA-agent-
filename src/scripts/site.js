@@ -148,6 +148,18 @@ else {
     }
   }
 
+  const footerMascot = document.querySelector('.footer-mascot img');
+  if (footerMascot) {
+    gsap.fromTo(footerMascot,
+      { yPercent: 48, scale: .78 },
+      { yPercent: 0, scale: 1, ease: 'none', scrollTrigger: { trigger: '.site-footer', start: 'top bottom', end: 'bottom bottom', scrub: .9 } },
+    );
+    gsap.fromTo('.site-footer__wordmark',
+      { letterSpacing: '-.13em', opacity: .2 },
+      { letterSpacing: '-.095em', opacity: 1, ease: 'none', scrollTrigger: { trigger: '.site-footer', start: 'top 75%', end: 'center center', scrub: .7 } },
+    );
+  }
+
 }
 const menu = document.querySelector('.menu');
 menu?.addEventListener('click', () => {
