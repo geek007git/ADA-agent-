@@ -48,7 +48,7 @@ const agents = [
       </section>
       <section class="film" aria-label="Studio process film">
         <video autoplay muted loop playsinline preload="metadata" poster="https://images.pexels.com/videos/9617184/pexels-photo-9617184.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/9617184/9617184-uhd_4096_2160_25fps.mp4" type="video/mp4" /></video>
-        <div class="film-wash"></div><div class="film-caption"><span>01 / THE PRACTICE</span><strong>Good work starts<br />with close attention.</strong><small>4K FILM / RON LACH VIA PEXELS</small></div>
+        <div class="film-wash"></div><div class="film-caption"><span>01 / THE PRACTICE</span><strong>Good work starts<br />with close attention.</strong></div>
       </section>
       <section class="statement ruled" id="practice">
         <div class="section-tag">WHAT WE DO / 01—04</div><h2>Not more output.<br /><em>Better decisions.</em></h2>
@@ -66,11 +66,11 @@ const agents = [
             </article>
             <article class="process-panel process-panel--film">
               <video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/8004278/pexels-photo-8004278.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/8004278/8004278-uhd_3840_2160_25fps.mp4" type="video/mp4" /></video>
-              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>01 / THINK TOGETHER</span><h3>The right question<br />before the first line.</h3><small>4K / PAVEL DANILYUK VIA PEXELS</small></div>
+              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>01 / THINK TOGETHER</span><h3>The right question<br />before the first line.</h3></div>
             </article>
             <article class="process-panel process-panel--film">
               <video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/12557538/pexels-photo-12557538.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/12557538/12557538-uhd_3840_2160_30fps.mp4" type="video/mp4" /></video>
-              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>02 / MAKE WITH CARE</span><h3>Precision is a<br />human habit.</h3><small>4K / MATIAS LUGE VIA PEXELS</small></div>
+              <div class="process-panel__shade"></div><div class="process-panel__copy"><span>02 / MAKE WITH CARE</span><h3>Precision is a<br />human habit.</h3></div>
             </article>
             <article class="process-panel process-panel--outro">
               <span>03 / PROVE THE RESULT</span><h2>Evidence<br />ends the<br /><em>argument.</em></h2><a href="#ada">SEE THE SYSTEM ↓</a>
@@ -90,9 +90,15 @@ const agents = [
         <div class="section-tag">THE SYSTEM / SPECIALISTS</div><div class="agents-intro"><h2>Many minds.<br />One mission.</h2><p>Different responsibilities. Shared context. A single trail of decisions.</p></div>
         <div class="agent-index">{agents.map(([name, role], index) => <div><span>0{index + 1}</span><strong>{name}</strong><p>{role}</p></div>)}</div>
       </section>
+      <section class="material-films" aria-label="Material studies">
+        <div class="material-films__head"><span>MATERIAL STUDIES / 01—03</span><p>Ideas become convincing when they survive contact with real hands, real tools, and real decisions.</p></div>
+        <figure class="material-film material-film--wide"><div><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/6283047/pexels-photo-6283047.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/6283047/6283047-uhd_3840_2160_24fps.mp4" type="video/mp4" /></video></div><figcaption><span>01 / DRAW</span><span>DECISIONS BEFORE DECORATION</span></figcaption></figure>
+        <figure class="material-film material-film--narrow"><div><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/5321457/pexels-photo-5321457.jpeg?auto=compress&cs=tinysrgb&w=1200"><source src="https://videos.pexels.com/video-files/5321457/5321457-uhd_4096_2160_30fps.mp4" type="video/mp4" /></video></div><figcaption><span>02 / FORM</span><span>THE HAND KNOWS</span></figcaption></figure>
+        <figure class="material-film material-film--full"><div><video muted loop playsinline preload="none" poster="https://images.pexels.com/videos/8037242/pexels-photo-8037242.jpeg?auto=compress&cs=tinysrgb&w=1600"><source src="https://videos.pexels.com/video-files/8037242/8037242-uhd_3840_2160_25fps.mp4" type="video/mp4" /></video></div><figcaption><span>03 / ARRANGE</span><span>CLARITY IS COMPOSED</span></figcaption></figure>
+      </section>
       <section class="split-film">
         <div class="split-copy"><span>HUMAN / MACHINE</span><h2>Technology<br />with a pulse.</h2><p>The system handles coordination. Taste, judgment, and the final call stay human.</p></div>
-        <figure><video autoplay muted loop playsinline preload="none" poster="https://images.pexels.com/videos/9465403/pexels-photo-9465403.jpeg?auto=compress&cs=tinysrgb&w=1200"><source src="https://videos.pexels.com/video-files/9465403/9465403-uhd_3840_2160_25fps.mp4" type="video/mp4" /></video><figcaption>02 / HUMAN SIGNAL — 4K FILM / ROCKETMANN TEAM VIA PEXELS</figcaption></figure>
+        <figure><video autoplay muted loop playsinline preload="none" poster="https://images.pexels.com/videos/9465403/pexels-photo-9465403.jpeg?auto=compress&cs=tinysrgb&w=1200"><source src="https://videos.pexels.com/video-files/9465403/9465403-uhd_3840_2160_25fps.mp4" type="video/mp4" /></video></figure>
       </section>
       <section class="proof"><p>THE STANDARD / 01—04</p><h2>Less “trust me.”<br /><span>More evidence.</span></h2><div class="proof-line"><span>01 / WORKING BUILD</span><span>02 / TEST RESULTS</span><span>03 / REVIEW NOTES</span><span>04 / YOUR APPROVAL</span></div></section>
       <section class="contact ruled" id="contact"><div class="section-tag">NEW BUSINESS / OPEN</div><p>Have an idea that<br />will not sit still?</p><a href="mailto:hello@arvis.studio"><span>LET’S MAKE IT</span><b>↗</b></a><div class="contact-foot"><span>HELLO@ARVIS.STUDIO</span><span>BUILT IN INDIA / WORKING EVERYWHERE</span></div></section>

@@ -100,7 +100,23 @@ else {
     if (entry.isIntersecting) video.play().catch(() => {});
     else video.pause();
   }), { rootMargin: '35% 35%', threshold: .05 });
-  document.querySelectorAll('.process-panel video').forEach((video) => filmObserver.observe(video));
+  document.querySelectorAll('.process-panel video, .material-film video').forEach((video) => filmObserver.observe(video));
+
+  document.querySelectorAll('.material-film').forEach((figure) => {
+    const frame = figure.querySelector('div');
+    const video = figure.querySelector('video');
+    gsap.fromTo(frame, { clipPath: 'inset(14% 0 0 0)' }, {
+      clipPath: 'inset(0% 0 0 0)',
+      ease: 'none',
+      scrollTrigger: { trigger: figure, start: 'top 88%', end: 'top 38%', scrub: .7 },
+    });
+    gsap.fromTo(video, { scale: 1.15, yPercent: -4 }, {
+      scale: 1,
+      yPercent: 4,
+      ease: 'none',
+      scrollTrigger: { trigger: figure, start: 'top bottom', end: 'bottom top', scrub: true },
+    });
+  });
 
   gsap.fromTo('.ada-title h2', { xPercent: 10 }, {
     xPercent: -5,
